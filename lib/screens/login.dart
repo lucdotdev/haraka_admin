@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffF5F6FA),
       body: Center(
         child: Container(
           width: width - width / 1.5,
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   listener: (context, state) {
                     if (state is LoginSuccefful) {
                       Future.delayed(
-                          Duration(milliseconds: 500),
+                          Duration(milliseconds: 100),
                           () => Navigator.of(context)
                               .pushReplacementNamed('/dashboard'));
                     }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haraka_admin/cubits/drawer/drawer_cubit.dart';
 import 'package:haraka_admin/screens/dash/drawer.dart';
 
-import 'dashboard.dart';
+import 'dashboard/dashboard.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (state is GoToUsers) {
                     return Text("users");
                   }
-                  return DashBoardScreen();
+                  return const DeliveryList();
                 }),
           )
         ]));
