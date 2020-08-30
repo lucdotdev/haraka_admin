@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haraka_admin/cubits/drawer/drawer_cubit.dart';
+import 'package:haraka_admin/screens/dash/add_users/users_list.dart';
 import 'package:haraka_admin/screens/dash/drawer.dart';
 
 import 'dashboard/dashboard.dart';
@@ -28,8 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 cubit: context.bloc<DrawerCubit>(),
                 builder: (context, state) {
                   if (state is GoToUsers) {
-                    return Text("users");
+                    return UsersList();
                   }
+                  if (state is GoHomePage) {
+                    return DeliveryList();
+                  }
+
                   return const DeliveryList();
                 }),
           )
