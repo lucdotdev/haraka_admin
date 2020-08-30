@@ -32,7 +32,7 @@ class _DialogDeliverState extends State<DialogDeliver> {
           Text('Selectionner un livreur', style: TextStyle(color: Colors.red)),
       content: Container(
           width: 500,
-          height: 500,
+          height: double.maxFinite,
           child: FutureBuilder(
             future:
                 // firestore.collection("user").where("a", isEqualTo: 2).get(),
@@ -55,7 +55,9 @@ class _DialogDeliverState extends State<DialogDeliver> {
                           });
                     });
               }
-              return Text("lol");
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             },
           )),
       actions: <Widget>[

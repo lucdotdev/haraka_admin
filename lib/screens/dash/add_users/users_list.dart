@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:haraka_admin/screens/dash/add_users/dialog_add_user.dart';
 
 class UsersList extends StatelessWidget {
   const UsersList({Key key}) : super(key: key);
@@ -9,7 +10,7 @@ class UsersList extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => null,
+        onPressed: () => addUser(context),
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -151,5 +152,14 @@ class UsersList extends StatelessWidget {
       default:
         return Text("haaaa");
     }
+  }
+
+  Future addUser(context) async {
+    showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return DialogAddUser();
+        });
   }
 }
