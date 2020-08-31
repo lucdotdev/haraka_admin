@@ -14,7 +14,6 @@ class DialogAddUser extends StatefulWidget {
 class _DialogAddUserState extends State<DialogAddUser> {
   final AddUserCubit addUserCubit =
       AddUserCubit(addUsersRepository: AddUsersRepository());
-  final _formKey = GlobalKey<FormState>();
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -68,55 +67,67 @@ class _DialogAddUserState extends State<DialogAddUser> {
                 }
                 return Column(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: Color(0xffF2F5FF),
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            enabled: true,
-                            border: InputBorder.none,
-                            hintText: "Nom",
-                            icon: Icon(Icons.account_box)),
-                        controller: name,
-                      ),
+                    Text("Information:"),
+                    TextField(
+                      decoration: InputDecoration(
+                          enabled: true,
+                          hintText: "Nom",
+                          icon: Icon(Icons.account_box)),
+                      controller: name,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: Color(0xffF2F5FF),
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            enabled: true,
-                            border: InputBorder.none,
-                            hintText: "Email",
-                            icon: Icon(Icons.email)),
-                        controller: email,
-                      ),
+                    SizedBox(
+                      height: 10,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: Color(0xffF2F5FF),
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            enabled: true,
-                            border: InputBorder.none,
-                            hintText: "Mot de passe",
-                            icon: Icon(Icons.enhanced_encryption_rounded)),
-                        controller: password,
-                      ),
+                    TextField(
+                      decoration: InputDecoration(
+                          enabled: true,
+                          hintText: "Email",
+                          icon: Icon(Icons.email)),
+                      controller: email,
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                          enabled: true,
+                          hintText: "Mot de passe",
+                          icon: Icon(Icons.enhanced_encryption_rounded)),
+                      controller: password,
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text("Type de compte:"),
+                    RadioListTile(
+                        value: 1,
+                        groupValue: account_type,
+                        title: Text("Business"),
+                        onChanged: (value) {
+                          setState(() {
+                            account_type = value;
+                          });
+                        }),
+                    RadioListTile(
+                        value: 2,
+                        groupValue: account_type,
+                        title: Text("Livreur"),
+                        onChanged: (value) {
+                          setState(() {
+                            account_type = value;
+                          });
+                        }),
                   ],
                 );
               },
             )),
         actions: <Widget>[
           FlatButton(
-              child: Text('Ajouter', style: TextStyle(color: Colors.black)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              padding: EdgeInsets.all(5),
+              color: Colors.green,
+              child: Text('Ajouter', style: TextStyle(color: Colors.white)),
               onPressed: () => {
                     if (name.text.isEmpty ||
                         password.text.isEmpty ||
@@ -124,10 +135,11 @@ class _DialogAddUserState extends State<DialogAddUser> {
                       {}
                     else
                       {
+                        print(name.value.text),
                         addUserCubit.addUser({
-                          "name": name.text,
-                          "email": email.text,
-                          "password": password.text,
+                          "name": name.value.text,
+                          "email": email.value.text,
+                          "password": password.value.text,
                           "account_type": account_type
                         }),
                       }

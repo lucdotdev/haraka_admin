@@ -6,6 +6,7 @@ class LoginRepository {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.setPersistence(Persistence.SESSION);
       return userCredential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
