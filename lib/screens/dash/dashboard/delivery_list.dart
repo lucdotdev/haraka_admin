@@ -46,7 +46,7 @@ class _DeliveryListState extends State<DeliveryList> {
               child: Column(
                 children: [
                   Text(
-                    "Livarisons :",
+                    "Livraisons :",
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,

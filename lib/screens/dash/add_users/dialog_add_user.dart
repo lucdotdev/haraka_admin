@@ -18,7 +18,7 @@ class _DialogAddUserState extends State<DialogAddUser> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
-
+  TextEditingController adress = TextEditingController();
   int account_type = 1;
 
   @override
@@ -32,6 +32,7 @@ class _DialogAddUserState extends State<DialogAddUser> {
     email.dispose();
     password.dispose();
     name.dispose();
+    adress.dispose();
   }
 
   @override
@@ -96,6 +97,16 @@ class _DialogAddUserState extends State<DialogAddUser> {
                       controller: password,
                     ),
                     SizedBox(
+                      height: 10,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                          enabled: true,
+                          hintText: "Adresse (pas pour les livreur)",
+                          icon: Icon(Icons.map)),
+                      controller: adress,
+                    ),
+                    SizedBox(
                       height: 30,
                     ),
                     Text("Type de compte:"),
@@ -140,7 +151,8 @@ class _DialogAddUserState extends State<DialogAddUser> {
                           "name": name.value.text,
                           "email": email.value.text,
                           "password": password.value.text,
-                          "account_type": account_type
+                          "account_type": account_type,
+                          "adress": email.value.text
                         }),
                       }
                   })

@@ -37,7 +37,7 @@ class UsersList extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Utilisateur :",
+                    "Utilisateurs :",
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
