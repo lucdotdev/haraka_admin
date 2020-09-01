@@ -7,9 +7,9 @@ class AddUsersRepository {
         'https://us-central1-haraka-livraison.cloudfunctions.net/createUser';
     dynamic body = jsonEncode(user);
 
+    print(user);
     try {
-      var response = await http
-          .post(url, body: body, headers: {'Content-Type': 'application/json'});
+      var response = await http.post(url, body: body);
 
       if (response.statusCode == 200) {
         return 1;

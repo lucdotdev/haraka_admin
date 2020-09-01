@@ -7,6 +7,7 @@ import './screens/screens.dart';
 import './blocs/blocs.dart';
 
 void main() {
+  FirebaseAuth.instance.authStateChanges().first;
   runApp(MyApp());
 }
 
@@ -23,6 +24,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    super.initState();
+    if (_auth.currentUser != null) {
+      setState(() {
+        auth = true;
+      });
+    }
     _auth.authStateChanges().listen((User user) {
       if (user == null) {
         setState(() {
@@ -34,26 +41,25 @@ class _MyAppState extends State<MyApp> {
         });
       }
     });
-    super.initState();
   }
 
   @override
   void dispose() {
-    _loginBloc.close();
     super.dispose();
-  }
-
-  Function returnPreferlScreen(Widget s) {
-    if (auth) {
-      return (context) => s;
-    } else {
-      return (context) =>
-          BlocProvider.value(value: _loginBloc, child: LoginScreen());
-    }
+    _loginBloc.close();
   }
 
   @override
   Widget build(BuildContext context) {
+    Function returnPreferlScreen(Widget s) {
+      if (auth) {
+        return (context) => s;
+      } else {
+        return (context) =>
+            BlocProvider.value(value: _loginBloc, child: LoginScreen());
+      }
+    }
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -65,10 +71,10 @@ class _MyAppState extends State<MyApp> {
           value: DrawerCubit(),
           child: HomeScreen(),
         )),
-        '/dashboard': returnPreferlScreen(BlocProvider.value(
-          value: DrawerCubit(),
-          child: HomeScreen(),
-        )),
+        // '/dashboard': returnPreferlScreen(BlocProvider.value(
+        //   value: DrawerCubit(),
+        //   child: HomeScreen(),
+        // )),
       },
     );
   }

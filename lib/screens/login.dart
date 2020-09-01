@@ -58,9 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   listener: (context, state) {
                     if (state is LoginSuccefful) {
                       Future.delayed(
-                          Duration(milliseconds: 100),
-                          () => Navigator.of(context)
-                              .pushReplacementNamed('/dashboard'));
+                          Duration(milliseconds: 300),
+                          () =>
+                              Navigator.of(context).pushReplacementNamed('/'));
                     }
                     if (state is LoginFailed) {
                       showDialogAction(context, state.error);
